@@ -9,6 +9,7 @@ ENV COMPOSER_HOME /composer
 
 RUN set -eux && \
   apk update && \
+  apk add --no-cache bash &&\
   apk add --update --no-cache --virtual=.build-dependencies \
   autoconf \
   gcc \
