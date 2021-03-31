@@ -1,4 +1,4 @@
-# docker-laravel02
+# laravel-vue-app
 
 docker-laravel01を以下のコンテナ構成に拡張したもの
 
@@ -13,8 +13,17 @@ docker-laravel01を以下のコンテナ構成に拡張したもの
 ### Dockerビルド
 - `docker-compose up -d --build`
 
+### .bashrc編集
+- `docker exec -it app_1 bash`
+- `cd ~`
+- `.bashrc`を作成、編集
+```
+alias ll='ls -la'
+export PS1="[\u@\h \w]$"
+```
+
 ### appコンテナに入りLaravelインストール
-- `docker exec -it app_1 ash`
+- `docker exec -it app_1 bash`
 - `Project directory "/work/." is not empty.` が出たら、
 `rm .DS_Store`
 - `composer create-project --prefer-dist laravel/laravel .`
@@ -53,7 +62,8 @@ MEMCACHED_PORT=11211 // 追記
 - `docker exec -it app_1 ash`
 - `php artisan tinker`
 - `\Cache::store('memcached')->put('sample_key', 'sample_value', 600);`
-- `\Cache::store('memcached')->get('sample_key');`<br>`'sample_value'`と表示されれば接続確認完了
+- `\Cache::store('memcached')->get('sample_key');`で`'sample_value'`と表示されれば接続確認完了
 
-### nodeコンテナに入りVueインストール
+### nodeコンテナに入りVue, Vue-routerインストール
 - `npm install -D vue`
+- `npm install -D vue-router`
